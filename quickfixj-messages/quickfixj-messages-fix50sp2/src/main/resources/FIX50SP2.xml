@@ -5627,7 +5627,6 @@
       <value enum="K" description="ISDA_FPML_PRODUCT_URL"/>
       <value enum="L" description="LETTER_OF_CREDIT"/>
       <value enum="M" description="MARKETPLACE_ASSIGNED_IDENTIFIER"/>
-
       <!--  IG Customisation -->        
       <value enum="101" description="IG_ID"/>
     </field>
@@ -7022,6 +7021,8 @@
     <field number="367" name="QuoteSetValidUntilTime" type="UTCTIMESTAMP"/>
     <field number="368" name="QuoteEntryRejectReason" type="INT"/>
     <field number="369" name="LastMsgSeqNumProcessed" type="SEQNUM"/>
+	<!-- IG fix code generation issue -->
+	<field number="370" name="OnBehalfOfSendingTime" type="UTCTIMESTAMP"/>
     <field number="372" name="RefMsgType" type="STRING"/>
     <field number="374" name="BidRequestTransType" type="CHAR">
       <value enum="C" description="CANCEL"/>
