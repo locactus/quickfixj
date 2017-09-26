@@ -3917,8 +3917,15 @@
     <component name="InstrumentExtension">
       <field name="DeliveryForm" required="N"/>
       <field name="PctAtRisk" required="N"/>
+	  <!-- IG - Fixed QFJ Code Generation error --> 
+      <group name="NoInstrAttrib" required="N">
+        <field name="InstrAttribType" required="N"/>
+        <field name="InstrAttribValue" required="N"/>
+      </group>
+      <!-- 
       <component name="AttrbGrp" required="N"/>
-    </component>
+      -->
+     </component>
     <component name="TradeReportOrderDetail">
       <field name="OrderID" required="N"/>
       <field name="SecondaryOrderID" required="N"/>
