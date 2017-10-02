@@ -125,6 +125,9 @@
 				<directory>../quickfixj-messages/quickfixj-messages-fixt11/src/main/resources</directory>
 			</resource>
 			<resource>
+				<directory>../quickfixj-messages/quickfixj-messages-fix50sp2/src/main/resources</directory>
+			</resource>
+			<resource>
 				<directory>../quickfixj-messages/quickfixj-messages-fix50/src/main/resources</directory>
 			</resource>
 			<resource>
@@ -144,10 +147,7 @@
 			</resource>
 			<resource>
 				<directory>../quickfixj-messages/quickfixj-messages-fix50sp1/src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>../quickfixj-messages/quickfixj-messages-fix50sp2/src/main/resources</directory>
-			</resource>
+			</resource> 
 		</resources>
 
 		<testResources>
@@ -157,6 +157,7 @@
 			<testResource>
 				<directory>../quickfixj-messages/quickfixj-messages-fixt11/src/main/resources</directory>
 			</testResource>
+		
 			<testResource>
 				<directory>../quickfixj-messages/quickfixj-messages-fix50sp2/src/main/resources</directory>
 			</testResource>
@@ -204,6 +205,18 @@
                             <decimal>${generator.decimal}</decimal>
                         </configuration>
                     </execution>
+					<execution>
+                        <id>fix50sp2</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <dictFile>../quickfixj-messages/quickfixj-messages-fix50sp2/src/main/resources/FIX50SP2.modified.xml</dictFile>
+                            <packaging>quickfix.fix50sp2</packaging>
+                            <fieldPackage>quickfix.field</fieldPackage>
+                            <decimal>${generator.decimal}</decimal>
+                        </configuration>
+                    </execution>					
                     <execution>
                         <id>fix50</id>
                         <goals>
@@ -288,18 +301,6 @@
                             <decimal>${generator.decimal}</decimal>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>fix50sp2</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <dictFile>../quickfixj-messages/quickfixj-messages-fix50sp2/src/main/resources/FIX50SP2.modified.xml</dictFile>
-                            <packaging>quickfix.fix50sp2</packaging>
-                            <fieldPackage>quickfix.field</fieldPackage>
-                            <decimal>${generator.decimal}</decimal>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -343,7 +344,7 @@
                         <Export-Package>quickfix,quickfix.field.*,quickfix.mina.*,org.quickfixj.*</Export-Package>
                         <Import-Package>
                             <!-- add dynamically-loaded version-specific message factories (optional)-->
-                            quickfix.fix40;resolution:=optional,
+							quickfix.fix40;resolution:=optional,
                             quickfix.fix41;resolution:=optional,
                             quickfix.fix42;resolution:=optional,
                             quickfix.fix43;resolution:=optional,
