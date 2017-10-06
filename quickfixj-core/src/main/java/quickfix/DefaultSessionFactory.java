@@ -209,8 +209,8 @@ public class DefaultSessionFactory implements SessionFactory {
             session.setLogonTimeout(logonTimeout);
             session.setLogoutTimeout(logoutTimeout);
 
-            final int maxScheduledWriteRequests = getSetting(settings, sessionID, Session.SETTING_MAX_SCHEDULED_WRITE_REQUESTS, 0);
-            session.setMaxScheduledWriteRequests(maxScheduledWriteRequests);
+            final long maxScheduledWriteBytes = getSetting(settings, sessionID, Session.SETTING_MAX_SCHEDULED_WRITE_BYTES, 0);
+            session.setMaxScheduledWriteBytes(maxScheduledWriteBytes);
 
             //
             // Session registration and creation callback is done here instead of in

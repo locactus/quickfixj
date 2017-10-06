@@ -341,7 +341,7 @@ public class Session implements Closeable {
      */
     public static final String SETTING_RESEND_REQUEST_CHUNK_SIZE = "ResendRequestChunkSize";
 
-    public static final String SETTING_MAX_SCHEDULED_WRITE_REQUESTS = "MaxScheduledWriteRequests";
+    public static final String SETTING_MAX_SCHEDULED_WRITE_BYTES = "MaxScheduledWriteBytes";
 
     private static final ConcurrentMap<SessionID, Session> sessions = new ConcurrentHashMap<>();
 
@@ -388,7 +388,7 @@ public class Session implements Closeable {
     private boolean enableNextExpectedMsgSeqNum = false;
     private boolean enableLastMsgSeqNumProcessed = false;
 
-    private int maxScheduledWriteRequests = 0;
+    private long maxScheduledWriteBytes = 0;
 
     private final AtomicBoolean isResetting = new AtomicBoolean();
     private final AtomicBoolean isResettingState = new AtomicBoolean();
@@ -2834,12 +2834,12 @@ public class Session implements Closeable {
         }
     }
 
-    public int getMaxScheduledWriteRequests() {
-        return maxScheduledWriteRequests;
+    public long getMaxScheduledWriteBytes() {
+        return maxScheduledWriteBytes;
     }
 
-    public void setMaxScheduledWriteRequests(int maxScheduledWriteRequests) {
-        this.maxScheduledWriteRequests = maxScheduledWriteRequests;
+    public void setMaxScheduledWriteBytes(long maxScheduledWriteBytes) {
+        this.maxScheduledWriteBytes = maxScheduledWriteBytes;
     }
 
     public void setIgnoreHeartBeatFailure(boolean ignoreHeartBeatFailure) {
