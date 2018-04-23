@@ -53,7 +53,7 @@ class InitiatorIoHandler extends AbstractIoHandler {
         quickfixSession.setResponder(new IoSessionResponder(session,
                 networkingOptions.getSynchronousWrites(),
                 networkingOptions.getSynchronousWriteTimeout(),
-                quickfixSession.getMaxScheduledWriteBytes()));
+                quickfixSession.getMaxScheduledWriteRequests()));
         quickfixSession.getLog().onEvent("MINA session created: local="
                 + session.getLocalAddress() + ", " + session.getClass() + ", remote="
                 + session.getRemoteAddress());

@@ -20,12 +20,9 @@
 package quickfix.mina;
 
 import junit.framework.TestCase;
-import quickfix.Session;
-
 import org.apache.mina.core.future.WriteFuture;
 import org.apache.mina.core.session.IoSession;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import static org.mockito.Mockito.*;
@@ -124,31 +121,4 @@ public class IoSessionResponderTest extends TestCase {
         verify(mockProtocolSession).getRemoteAddress();
         verifyNoMoreInteractions(mockProtocolSession);
     }
-    
-    public void testMaxScheduledWriteBtyesExceeded() throws IOException {
-    	IoSession mockProtocolSession = mock(IoSession.class);
-    	Session session = mock(Session.class);
-    	stub(mockProtocolSession.getAttribute(SessionConnector.QF_SESSION)).toReturn(session);
-    	stub(mockProtocolSession.getScheduledWriteBytes()).toReturn(10L);
-
-    	IoSessionResponder responder = new IoSessionResponder(mockProtocolSession, false, 0, 5);
-    	String data = "Should fail";
-		assertFalse(responder.send(data));
-
-    	verify(session).disconnect(anyString(), eq(true));
-    }
-    
-    public void testMaxScheduledWriteBtyesNotExceeded() throws IOException {
-    	IoSession mockProtocolSession = mock(IoSession.class);
-    	Session session = mock(Session.class);
-    	stub(mockProtocolSession.getAttribute(SessionConnector.QF_SESSION)).toReturn(session);
-    	stub(mockProtocolSession.getScheduledWriteBytes()).toReturn(10L);
-
-    	IoSessionResponder responder = new IoSessionResponder(mockProtocolSession, false, 0, 50);
-    	String data = "Should succeed";
-		assertTrue(responder.send(data));
-
-    	verify(mockProtocolSession).write(data);
-    }
-
 }

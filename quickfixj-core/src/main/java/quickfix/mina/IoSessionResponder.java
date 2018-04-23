@@ -38,19 +38,19 @@ public class IoSessionResponder implements Responder {
     private final IoSession ioSession;
     private final boolean synchronousWrites;
     private final long synchronousWriteTimeout;
-    private final long maxScheduledWriteBytes;
+    private final int maxScheduledWriteRequests;
 
-    public IoSessionResponder(IoSession session, boolean synchronousWrites, long synchronousWriteTimeout, long maxScheduledWriteBytes) {
+    public IoSessionResponder(IoSession session, boolean synchronousWrites, long synchronousWriteTimeout, int maxScheduledWriteRequests) {
         ioSession = session;
         this.synchronousWrites = synchronousWrites;
         this.synchronousWriteTimeout = synchronousWriteTimeout;
-        this.maxScheduledWriteBytes = maxScheduledWriteBytes;
+        this.maxScheduledWriteRequests = maxScheduledWriteRequests;
     }
 
     @Override
     public boolean send(String data) {
         // Check for and disconnect slow consumers.
-        if (maxScheduledWriteBytes > 0 && ioSession.getScheduledWriteBytes() >= maxScheduledWriteBytes) {
+        if (maxScheduledWriteRequests > 0 && ioSession.getScheduledWriteMessages() >= maxScheduledWriteRequests) {
             Session qfjSession = (Session) ioSession.getAttribute(SessionConnector.QF_SESSION);
             try {
                 qfjSession.disconnect("Slow consumer", true);
